@@ -1,0 +1,11 @@
+# Ignore all generated files in IP directory to keep only .xci
+/Sources/ip/*/*
+!/Sources/ip/*/*.xci
+
+# Ignore all project files except the .xpr
+/Vivado_Proj/*/
+/Vivado_Proj/*.*
+!/Vivado_Proj/*.xpr
+
+# Ignore the build script output files
+/Output_Files/

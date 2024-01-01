@@ -1,0 +1,38 @@
+= Analog Discovery 3 introduction
+
+This repository includes a few tiny projects made to test some features of the Analog Discovery 3 (AD3). Those projects are introductions and may therefore include mistakes.
+
+== Eye diagram
+
+== Logic Analyzer
+
+=== Introduction
+
+In a previous project, I worked with the Digilent's Eclypse Z7 development board using both the AWG and Digitizer Zmods extension modules.
+
+An idea that was suggested to me was to use both the Eclypse Z7 and the AD3 by decoding the serial communication between the Eclypse Z7 and the Digitizer Zmod using the AD3 logic analyzer.
+
+This was a bit tricky as I had to create a Vivado project to program the Eclypse Z7's Zynq FPGA and change I/O configurations made by the Digitizer Controller IP Core. The Vivado project is included in the repository.
+
+
+=== Build the Vivado project
+
+In order to build the project, the default design flow must not be used. Instead, follow the steps bellow:
+
+. Open the project with Vivado 2021.2 (.xpr file).
+. It may be needed to remove and add back the source files if Vivado tries to locate them using absolute paths (happens way too much when using Vivado on Windows).
+. Run synthesis and wait for it to be finished.
+. Execute the ChangeNetlist_Build.tcl (Tools > Run Tcl Scripts...).
+. When the script is finished, the bitstream and the probes files should have been generated in the "Output_Files" directory.
+
+=== View in Waveforms
+
+(I do not know how the Waveforms workspace file will behave on someone else's computer but I have tried to open it from several directories on my computer and it does not seem to include things like absolute paths)
+
+The Waveforms workspace (.dwf3work file) includes the custom decoder for the AD9648. The communication uses SPI (with one shared data signal, not MOSI/MISO) with a custom protocol to read/write from/to the device's registers.
+
+The logic analyzer is therefore configured with two decoders: the SPI decoder that comes with Waveforms and a custom one, that translates the AD9648 specific protocol.
+
+The JavaScript code of the decoder (and the value to text) is available in the "Custom Decoder" folder. But it is also included in the workspace file. The only reason why the JavaScript code is in the repository is for it to be easier to open and read (since the workspace file is not text-based, it is impossible to see the scripts in GitHub directly).
+
+The workspace also remembers the last captured data so the communication can be analyzed even without the Eclypse Z7 board.
