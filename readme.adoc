@@ -4,6 +4,36 @@ This repository includes a few tiny projects made to test some features of the A
 
 == Eye diagram
 
+=== Introduction
+
+The first feature offered by the AD3 I wanted to test was the eye diagram plots. The initial idea was to output a pseudo-random binary sequence using the AD3 waveform generator and loopback this signal back to the AD3 scope. A hardware low-pass filter was supposed to be inserted in between the AWG and the scope to change the binary signal's shape by changing the filter's cutoff frequency using a potentiometer.
+
+But while setting up the waveform generation, I came accross the AD3 scripting capability and I wanted to try it out. I started writing a script that could generate a signal with random data, random noise, jitter and user-customizable transition time between two bits.
+
+By using this script and changing the parameters, the user can see the impact of the parameters on the eye diagram.
+
+=== Directory contents
+
+The "Eye_Diagram" directory contains two files: the Waveforms workspace and a JavaScript file.
+
+* Waveforms workspace: can be opened using the Waveforms software. It includes all that is needed to run this first test. The user must connect an AD3 to the computer and run the script included in the workspace. The script does the following:
+
+. Check for a scope and a waveform to be opened.
+. Configure the scope (this includes scales configuration, eye diagram, etc.).
+. Create the signal that will be displayed on the eye diagram.
+. Output the created signal on the waveform generator.
+. Run the scope and waveform.
+
+* JavaScript file: this file contains the script explained above. It is included in the workspace file but since the workspace file is not in a text format, I decided to include a copy of the file that can be viewed without the Waveforms software.
+
+=== Improvements
+
+This test could be improved by adding the low-pass filter with customizable cutoff frequency to dynamically change the eye's shape. It could be done in hardware, with a RC filter using a breadboard or with a digital filter. This could be done with a board such as the Eclypse Z7 board (FPGA board from Digilent with ADCs and DACs).
+
+=== Known issues
+
+The eye diagram data rate should be set to 5kHz by the script automatically but sometimes, it seems like the datarate is not set. Maybe this value is overwritten by something else after the script's execution.
+
 == Logic Analyzer
 
 === Introduction
