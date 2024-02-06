@@ -24,9 +24,10 @@ Scope1.Channel2.setDisable()            // Disable channel 2
 Scope1.Channel1.Offset.value = 0        // Channel 1 offset to 0V
 Scope1.Channel1.Range.value = 5         // Channel 1 range to 500mV/div
 Scope1.Time.Base.value = 0.002          // Timescale to 200us/div
-Scope1.Eye.Rate.value = 5000            // Eye diagram rate to 5kHz
 if(Scope1.window.eye == undefined)      // If the eye window is in undefined state, enable it
     Scope1.window.toggleEye()
+Scope1.Eye.Lock.value = 1
+Scope1.Eye.Rate.value = 5000            // Eye diagram rate to 5kHz
 print("Scope 1 configured.")
 
 ////////////////////////////////////////////////////////////////
