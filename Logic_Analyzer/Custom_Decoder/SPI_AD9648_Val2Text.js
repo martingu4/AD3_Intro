@@ -14,7 +14,7 @@ function Value2Text(flag, value)
 
         // Decode the R/W bit
         var RW_str;
-        if((value & 0x1000) == 0)
+        if((value & 0x8000) == 0)
             RW_str = "W";
         else
             RW_str = "R";
